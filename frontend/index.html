@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MIT Blog Crawler</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>MIT Blog Crawler</h1>
+  <p class="subtitle">Playwright 与 DrissionPage 双框架并行采集 mitadmissions.org/blogs/</p>
+
+  <!-- 采集配置 -->
+  <section class="config">
+    <fieldset>
+      <legend>采集范围</legend>
+      <label><input type="radio" name="mode" value="pages" checked> 前
+        <input type="number" id="maxPages" value="3" min="1" max="999"> 页</label>
+      <label><input type="radio" name="mode" value="all"> 全部分页</label>
+    </fieldset>
+    <div class="actions">
+      <button id="btnStart">开始采集</button>
+      <button id="btnStop" class="secondary" disabled>停止采集</button>
+      <button id="btnReset" class="danger">重置</button>
+      <span id="globalMsg" class="msg"></span>
+    </div>
+  </section>
+
+  <!-- 双框架独立进度卡片 -->
+  <section class="cards">
+    <div class="card" id="card-playwright">
+      <h2>Playwright</h2>
+      <div class="status-line">状态：<span class="status">idle</span></div>
+      <div class="grid">
+        <div>当前分页：<span class="current-page">0</span> / <span class="total-pages">?</span></div>
+        <div>已发现文章：<span class="discovered">0</span></div>
+        <div>成功采集：<span class="success">0</span></div>
+        <div>失败数量：<span class="failed">0</span></div>
+      </div>
+      <div class="current-article">当前文章：<span class="article">-</span></div>
+      <div class="progress"><div class="progress-bar"></div></div>
+      <div class="progress-text"></div>
+      <div class="time">开始时间：<span class="start-time">-</span> ｜ 运行时长：<span class="elapsed">0s</span></div>
+      <div class="actions">
+        <a class="download" href="/api/crawl/download/playwright">下载 Playwright CSV</a>
+      </div>
+    </div>
+
+    <div class="card" id="card-drissionpage">
+      <h2>DrissionPage</h2>
+      <div class="status-line">状态：<span class="status">idle</span></div>
+      <div class="grid">
+        <div>当前分页：<span class="current-page">0</span> / <span class="total-pages">?</span></div>
+        <div>已发现文章：<span class="discovered">0</span></div>
+        <div>成功采集：<span class="success">0</span></div>
+        <div>失败数量：<span class="failed">0</span></div>
+      </div>
+      <div class="current-article">当前文章：<span class="article">-</span></div>
+      <div class="progress"><div class="progress-bar"></div></div>
+      <div class="progress-text"></div>
+      <div class="time">开始时间：<span class="start-time">-</span> ｜ 运行时长：<span class="elapsed">0s</span></div>
+      <div class="actions">
+        <a class="download" href="/api/crawl/download/drissionpage">下载 DrissionPage CSV</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# 虚拟环境
+.venv/
+venv/
+
+# 采集运行产物（CSV、断点文件、临时文件）
+data/*.csv
+data/*.urls.json
+data/*.tmp
+
+# 运行日志与校验报告
+logs/*.log
+logs/*.txt
+logs/validation_report.json
+
+# 保留目录结构
+!data/.gitkeep
+!logs/.gitkeep
